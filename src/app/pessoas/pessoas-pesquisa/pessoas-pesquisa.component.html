@@ -22,7 +22,9 @@
 
 <div class="p-grid">
   <div class="p-col-12">
-        <app-pessoas-grid [pessoas]="pessoas" [size]="filtro.size" [totalRegistros]="totalRegistros" (buttonTrocaNumeroPaginaPessoas)="pesquisar($event)" ></app-pessoas-grid>
+        <app-pessoas-grid [pessoas]="pessoas" [size]="filtro.size" [totalRegistros]="totalRegistros"
+          (buttonTrocaNumeroPaginaPessoas)="pesquisar($event)" (buttonDeletePessoas)="excluir($event)">
+        </app-pessoas-grid>
   </div>
 </div>
 

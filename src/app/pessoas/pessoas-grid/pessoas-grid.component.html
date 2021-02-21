@@ -1,7 +1,8 @@
 
         <p-table [value]="pessoas"  [paginator]="true" [rows]="size"  [responsive]="true"
             [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="carregarPessoas($event)"
-        >
+          #TabelaListaPessoas>
+
           <ng-template pTemplate="header">
               <tr>
                   <th>Nome</th>
@@ -37,7 +38,8 @@
                   </td>
                   <td class="col-acoes-content">
                     <a pButton  icon="pi pi-pencil"  pTooltip="Editar"  tooltipPosition="bottom" ></a>
-                    <button pButton type="button" icon="pi pi-trash" class="col-margin-left-button-icon" pTooltip="Remover"  tooltipPosition="bottom"  ></button>
+                    <button pButton type="button" icon="pi pi-trash" class="col-margin-left-button-icon"
+                    (click)="excluir(pessoa)"  pTooltip="Remover"  tooltipPosition="bottom"  ></button>
                   </td>
               </tr>
           </ng-template>

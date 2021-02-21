@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class FiltroPessoas {
   nome : string ;
   page = 0 ;
-  size = 3 ;
+  size = 5 ;
 }
 
 @Injectable({
@@ -34,5 +34,9 @@ export class PessoaService {
 
   }
 
+  excluir(codigo : number){
+    const headers = new HttpHeaders().append('Authorization' ,  'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    return this.http.delete ( `${this.url}/${codigo}` , {headers : headers }) ;
+  }
 
 }

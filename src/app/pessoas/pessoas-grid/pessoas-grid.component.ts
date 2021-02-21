@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 @Component({
@@ -13,6 +13,10 @@ export class PessoasGridComponent implements OnInit {
   @Input() totalRegistros = null ;
 
   @Output()  buttonTrocaNumeroPaginaPessoas = new EventEmitter<Number>();
+  @Output()  buttonDeletePessoas = new EventEmitter<any>();
+
+  @ViewChild('TabelaListaPessoas') tabelaListaPessoas ;
+
 
   constructor() { }
 
@@ -24,6 +28,12 @@ export class PessoasGridComponent implements OnInit {
       const pagina = event.first / event.rows ;
       this.buttonTrocaNumeroPaginaPessoas.emit(pagina);
   }
+
+
+  excluir(pessoa: any ) {
+      this.buttonDeletePessoas.emit(pessoa);
+  }
+
 
 
 }

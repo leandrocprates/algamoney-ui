@@ -1,5 +1,10 @@
+import { PessoasGridComponent } from './../pessoas-grid/pessoas-grid.component';
+import { MessageService } from 'primeng/api';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { FiltroPessoas, PessoaService } from './../pessoa.service';
-import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -14,8 +19,15 @@ export class PessoasPesquisaComponent implements OnInit {
   pessoas = [  ];
   totalRegistros = 0 ;
 
+@ViewChild(PessoasGridComponent) pessoasGridComponent ;
 
-  constructor(private pessoaService : PessoaService) { }
+
+  constructor(
+              private pessoaService : PessoaService,
+              private messageService : MessageService,
+              private errorHandlerService : ErrorHandlerService
+              ) { }
+
 
   ngOnInit(): void {
 
@@ -33,6 +45,26 @@ export class PessoasPesquisaComponent implements OnInit {
 
           })  ;
   }
+
+  excluir(pessoa : any ){
+
+    console.log(pessoa);
+    this.pessoaService.excluir(pessoa.codigo)
+      .subscribe(
+        () => {
+          this.messageService.add({severity:'success', summary: 'Registrio Excluido',
+            detail:`Pessoa :${pessoa.nome}, codigo: ${pessoa.codigo} deletado com sucesso `});
+            this.pessoasGridComponent.tabelaListaPessoas.clear();
+
+        },
+        (error) => {
+          this.errorHandlerService.handle(error) ;
+        }
+      );
+
+  }
+
+
 
 
 }

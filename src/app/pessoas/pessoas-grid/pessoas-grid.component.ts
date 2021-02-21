@@ -14,6 +14,9 @@ export class PessoasGridComponent implements OnInit {
 
   @Output()  buttonTrocaNumeroPaginaPessoas = new EventEmitter<Number>();
   @Output()  buttonDeletePessoas = new EventEmitter<any>();
+  @Output()  linkMudarStatus = new EventEmitter<any>();
+
+
 
   @ViewChild('TabelaListaPessoas') tabelaListaPessoas ;
 
@@ -32,6 +35,11 @@ export class PessoasGridComponent implements OnInit {
 
   excluir(pessoa: any ) {
       this.buttonDeletePessoas.emit(pessoa);
+  }
+
+
+  mudarStatus(pessoa : any ) {
+      this.linkMudarStatus.emit(pessoa);
   }
 
 

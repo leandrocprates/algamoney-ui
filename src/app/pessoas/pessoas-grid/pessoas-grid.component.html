@@ -30,7 +30,7 @@
                     <span class="p-column-title">Status</span>
 
                       <a href="javascript:;" [pTooltip]="pessoa.ativo == true ? 'Desativar' : 'Ativar'"
-                        tooltipPosition="top">
+                        tooltipPosition="top" (click)="mudarStatus(pessoa)">
                           {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
                       </a>
 

@@ -1,0 +1,65 @@
+<div class="p-grid">
+
+  <div class="p-col-12">
+    <h1>Cadastro de Lancamento</h1>
+  </div>
+
+
+  <div class="p-col-12">
+    <p-selectButton [options]="tipos"  #tipo></p-selectButton>
+  </div>
+
+  <div class="p-col-12">
+
+    <form  #formCadastroLancamento="ngForm"  (ngSubmit)="salvar(formCadastroLancamento)">
+      <div class="p-fluid  p-formgrid p-grid">
+        <div class="p-field p-col-6 p-md-3">
+            <label for="vencimento" >Vencimento</label>
+            <p-calendar id="vencimento" name="vencimento" [showIcon]="true" dateFormat="dd/mm/yy" ngModel #vencimento="ngModel" required ></p-calendar>
+            <app-message [control]="vencimento" error="required" text="Informe uma data de vencimento" ></app-message>
+        </div>
+        <div class="p-field p-col-6 p-md-3">
+            <label for="recebimento" >{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
+            <p-calendar name="recebimento" [showIcon]="true" dateFormat="dd/mm/yy" ngModel ></p-calendar>
+        </div>
+        <div class="p-field p-col-12 p-md-9">
+          <label for="descricao" >Descrição </label>
+          <input id="descricao" name="descricao" type="text" pInputText ngModel #descricao="ngModel"
+            required minlength="5">
+
+            <app-message [control]="descricao" error="required" text="Informe uma descrição" ></app-message>
+            <app-message [control]="descricao" error="minlength" text="Minimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres" ></app-message>
+
+        </div>
+        <div class="p-field p-col-12 p-md-3">
+          <label for="valor" >Valor </label>
+          <p-inputNumber name="valor"  mode="currency" currency="BRL" locale="pt-BR" placeholder="0,00" ngModel  #valor="ngModel" required ></p-inputNumber>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+          <label for="categoria" >Categoria {{categoria.value}}</label>
+          <p-dropdown name="categoria" [options]="categorias"  placeholder="Selecione..."  ngModel  #categoria="ngModel" required ></p-dropdown>
+
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+          <label for="pessoa" >Pessoa {{pessoa.value}}</label>
+          <p-dropdown name="pessoa"  [options]="pessoas" placeholder="Selecione..." ngModel #pessoa="ngModel"  filter="true" required ></p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12 p-md-10">
+          <label for="observacao" >Observação</label>
+          <textarea id="observacao" name="observacao"  [rows]="3" [cols]="30"  ngModel pInputTextarea></textarea>
+        </div>
+
+      </div>
+      <div class="p-grid">
+        <button pButton type="submit" label="Salvar" [disabled]="formCadastroLancamento.invalid" ></button>
+        <button pButton type="button" label="Novo" class="p-ml-2" ></button>
+        <div class="p-ml-2 p-mt-2"><a href="javascript:;">Voltar Para Pesquisa</a></div>
+      </div>
+
+    </form>
+
+  </div>
+
+
+</div>

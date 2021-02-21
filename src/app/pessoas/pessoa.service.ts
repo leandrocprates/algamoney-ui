@@ -49,4 +49,12 @@ export class PessoaService {
   }
 
 
+  listarTodas(){
+    const headers = new HttpHeaders()
+                    .append('Authorization' ,  'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    return this.http.get( this.url , {headers : headers  }) ;
+  }
+
+
+
 }

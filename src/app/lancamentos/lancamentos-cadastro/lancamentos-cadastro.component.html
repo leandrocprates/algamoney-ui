@@ -36,13 +36,15 @@
           <p-inputNumber name="valor"  mode="currency" currency="BRL" locale="pt-BR" placeholder="0,00" ngModel  #valor="ngModel" required ></p-inputNumber>
         </div>
         <div class="p-field p-col-12 p-md-6">
-          <label for="categoria" >Categoria {{categoria.value}}</label>
-          <p-dropdown name="categoria" [options]="categorias"  placeholder="Selecione..."  ngModel  #categoria="ngModel" required ></p-dropdown>
+          <label for="categoria" >Categoria {{categoria.value | json }}</label>
+          <p-dropdown name="categoria" [options]="categorias"  placeholder="Selecione..."  [(ngModel)]="categoriaSelecionada"  #categoria="ngModel" required
+            optionLabel="nome" optionValue="codigo"  ></p-dropdown>
 
         </div>
         <div class="p-field p-col-12 p-md-6">
-          <label for="pessoa" >Pessoa {{pessoa.value}}</label>
-          <p-dropdown name="pessoa"  [options]="pessoas" placeholder="Selecione..." ngModel #pessoa="ngModel"  filter="true" required ></p-dropdown>
+          <label for="pessoa" >Pessoa </label>
+          <p-dropdown name="pessoa"  [options]="pessoas" placeholder="Selecione..." [(ngModel)]="pessoaSelecionada" #pessoa="ngModel"  filter="true" required
+            optionLabel="nome" optionValue="codigo"  ></p-dropdown>
         </div>
 
         <div class="p-field p-col-12 p-md-10">

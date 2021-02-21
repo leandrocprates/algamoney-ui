@@ -73,15 +73,14 @@ export class PessoasPesquisaComponent implements OnInit {
 
     this.pessoaService.mudarStatus(statusEnviado , pessoa.codigo)
       .subscribe(
-        () => {
-            this.messageService.add({severity:'success', summary: 'Status Alterado',
-              detail:`Status de ${pessoa.nome} alterado com sucesso `});
-              this.pessoasGridComponent.tabelaListaPessoas.clear();
-        },
-        (error) => {
-            this.errorHandlerService.handle(error) ;
-        }
-
+            () => {
+                this.messageService.add({severity:'success', summary: 'Status Alterado',
+                    detail:`Status de ${pessoa.nome} alterado com sucesso `});
+                this.pessoasGridComponent.tabelaListaPessoas.clear();
+            },
+            (error) => {
+                this.errorHandlerService.handle(error) ;
+            }
       );
 
 

@@ -1,3 +1,4 @@
+import { LancamentoModel } from './../core/model/LancamentoModel';
 import { HttpClient, HttpHeaders , HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -48,6 +49,15 @@ export class LancamentoService {
     return this.http.get(`${this.lancamentoURL}?resumo`, { headers, params }) ;
   }
 
+
+  salvar(lancamento : LancamentoModel){
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                                      .append('Content-Type', 'application/json');
+
+    return this.http.post<LancamentoModel>(this.lancamentoURL , lancamento , {headers: headers } );
+  }
+
+
   excluir( codigo : number ){
     const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     return this.http.delete(`${this.lancamentoURL}/${codigo}`, { headers : headers })
@@ -56,8 +66,8 @@ export class LancamentoService {
                   console.log('Service: ' + erro.message);
                   return throwError(erro) ;
               })
-          )
-    ;
+          );
+
   }
 
 

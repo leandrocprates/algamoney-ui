@@ -1,9 +1,13 @@
-import { PessoaService } from './../../pessoas/pessoa.service';
-import { ErrorHandlerService } from './../../core/error-handler.service';
+import { MessageService } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CategoriasService } from './../../categorias/categorias.service';
 
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { CategoriasService } from './../../categorias/categorias.service';
+import { PessoaService } from './../../pessoas/pessoa.service';
+import { LancamentoService } from './../lancamento.service';
+
+import { LancamentoModel } from './../../core/model/LancamentoModel';
 
 @Component({
   selector: 'app-lancamentos-cadastro',
@@ -21,13 +25,14 @@ export class LancamentosCadastroComponent implements OnInit {
 
   categorias = [] ;
   pessoas = [];
-  categoriaSelecionada = null;
-  pessoaSelecionada = null;
+  lancamentoModel = new LancamentoModel();
 
 
   constructor(private categoriasService : CategoriasService,
               private pessoaService : PessoaService,
-              private errorHandlerService : ErrorHandlerService
+              private lancamentoService : LancamentoService,
+              private messageService : MessageService,
+              private errorHandlerService : ErrorHandlerService,
 
     ) { }
 
@@ -38,9 +43,20 @@ export class LancamentosCadastroComponent implements OnInit {
 
 
   salvar(formCadastroLancamento : NgForm ): void {
-    console.log(formCadastroLancamento);
-    console.log(this.categoriaSelecionada) ;
-    console.log(this.pessoaSelecionada) ;
+
+    console.log(this.lancamentoModel);
+    this.lancamentoService.salvar(this.lancamentoModel)
+        .subscribe(lancamento => {
+              this.messageService.add({severity:'success', summary:'Lancamento Criado',
+              detail: `O lancamento de codigo ${lancamento.codigo} foi criado com sucesso.`});
+              formCadastroLancamento.reset();
+              this.lancamentoModel = new LancamentoModel();
+
+            },(error)=> {
+                this.errorHandlerService.handle(error);
+            }
+        );
+
   }
 
   carregarCategorias(){

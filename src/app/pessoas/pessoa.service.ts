@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PessoaModel } from '../core/model/PessoaModel';
 
 
 export class FiltroPessoas {
@@ -55,6 +56,14 @@ export class PessoaService {
     return this.http.get( this.url , {headers : headers  }) ;
   }
 
+
+  adicionar( pessoaModel : PessoaModel){
+    const headers = new HttpHeaders()
+                    .append('Authorization' ,  'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+                    .append('Content-Type' ,  'application/json');
+
+    return this.http.post<PessoaModel>( this.url , pessoaModel , {headers : headers  }) ;
+  }
 
 
 }

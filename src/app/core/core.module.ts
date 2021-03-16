@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +9,8 @@ import { ErrorHandlerService } from './error-handler.service';
 @NgModule({
   declarations: [NavbarComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   providers:[ErrorHandlerService],
   exports:[NavbarComponent]

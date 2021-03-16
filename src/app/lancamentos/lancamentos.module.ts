@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -30,6 +31,7 @@ import { LancamentosCadastroComponent } from './lancamentos-cadastro/lancamentos
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
 
     SharedModule,
 

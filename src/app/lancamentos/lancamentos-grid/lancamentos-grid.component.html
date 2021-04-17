@@ -36,7 +36,8 @@
                   {{lancamento.valor | number : '1.2-2' }}
                 </td>
                 <td class="col-acoes-content">
-                  <a pButton  icon="pi pi-pencil"  pTooltip="Editar"  tooltipPosition="bottom" ></a>
+                  <a pButton  icon="pi pi-pencil"  pTooltip="Editar"  tooltipPosition="bottom"
+                        [routerLink]="['/lancamentos', lancamento.codigo ]"></a>
                   <button pButton type="button" icon="pi pi-trash" class="col-margin-left-button-icon"
                     (click)="confirmarExclusao(lancamento)" pTooltip="Remover"  tooltipPosition="bottom"  ></button>
 

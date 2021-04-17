@@ -8,6 +8,7 @@ import { PessoaService } from './../../pessoas/pessoa.service';
 import { LancamentoService } from './../lancamento.service';
 
 import { LancamentoModel } from './../../core/model/LancamentoModel';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lancamentos-cadastro',
@@ -33,10 +34,13 @@ export class LancamentosCadastroComponent implements OnInit {
               private lancamentoService : LancamentoService,
               private messageService : MessageService,
               private errorHandlerService : ErrorHandlerService,
+              private route : ActivatedRoute
 
     ) { }
 
   ngOnInit(): void {
+
+      console.log(this.route.snapshot.params['codigo']);
       this.carregarCategorias();
       this.carregarPessoas();
   }
